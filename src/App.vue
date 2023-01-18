@@ -38,7 +38,7 @@ export default {
     // Model
     {
       const loader = new GLTFLoader();
-      loader.load('public/model/scene.gltf', gltf => {
+      loader.load('./model/scene.gltf', gltf => {
         scene.add(gltf.scene);
       },
         function (error) {
