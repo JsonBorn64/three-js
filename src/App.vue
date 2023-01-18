@@ -89,7 +89,8 @@ export default {
     controls.autoRotate = true;
     controls.autoRotateSpeed = 2;
     controls.enableDamping = true;
-    controls.minDistance = 1;
+    controls.minDistance = 0.64;
+    controls.enablePan = false;
 
     //Resize
     window.addEventListener('resize', onWindowResize, false)
