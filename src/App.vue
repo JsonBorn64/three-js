@@ -22,7 +22,7 @@
     <div class="tree" ref="tree"></div>
   </section>
   <section class="second_screen"></section>
-  <canvas id="sakura"></canvas>
+  <canvas id="sakura" ref="sakura"></canvas>
   <div class="btnbg">
   </div>
 </template>
@@ -75,7 +75,7 @@ export default {
             const windowHeight = window.innerHeight;
             const deviationX = cursorX - (windowWidth / 2);
             const deviationY = cursorY - (windowHeight / 2);
-            modelRotationX = deviationY / (windowHeight / 2) * 0.1;
+            modelRotationX = deviationY / (windowHeight / 2) * 0.05;
             modelRotationY = deviationX / (windowWidth / 2) * 0.1;
             gltf.scene.rotation.x = modelRotationX;
             gltf.scene.rotation.y = modelRotationY;
@@ -1031,7 +1031,7 @@ void main(void) {
     }
 
     function renderPostProcess() {
-      gl.enable(gl.TEXTURE_2D);
+      // gl.enable(gl.TEXTURE_2D);
       gl.disable(gl.DEPTH_TEST);
       var bindRT = function (rt, isclear) {
         gl.bindFramebuffer(gl.FRAMEBUFFER, rt.frameBuffer);
@@ -1119,8 +1119,8 @@ void main(void) {
     }
 
     /////
-    function onResize(e) {
-      makeCanvasFullScreen(document.getElementById("sakura"));
+    const onResize = (e) => {
+      makeCanvasFullScreen(this.$refs.sakura);
       setViewports();
       if (sceneStandBy) {
         initScene();
@@ -1174,11 +1174,11 @@ void main(void) {
 
     function makeCanvasFullScreen(canvas) {
       canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;;
+      canvas.height = window.innerHeight;
     }
 
-    window.addEventListener('load', function (e) {
-      var canvas = document.getElementById("sakura");
+    window.addEventListener('load', (e) => {
+      var canvas = this.$refs.sakura;
       try {
         makeCanvasFullScreen(canvas);
         gl = canvas.getContext('experimental-webgl');
